@@ -17,8 +17,8 @@ The system achieves **78.10% accuracy**.
 - **Device**: iPhone and Samsung with Sensor Logger app
 - **Sampling Rate**: 100 Hz
 - **Sensors**: Accelerometer (x, y, z) and Gyroscope (x, y, z)
-- **Total Recordings**: 15 recordings across 4 activities
-- **Total Samples**: 13,000+ sensor measurements
+- **Total Recordings**: 50 recordings across 4 activities
+- **Total Samples**: 32,053 sensor measurements
 
 ### Activities Recorded
 1. **Standing** (12 recordings) - Phone held steady at waist level
@@ -52,8 +52,8 @@ The system achieves **78.10% accuracy**.
 
 ### Overall Performance
 - **Overall Accuracy**: 78.10%
-- **Training Samples**: 250 windows
-- **Test Samples**: 92 windows
+- **Training Samples**: 426 windows
+- **Test Samples**: 137 windows
 
 ### Per-Activity Performance
 
@@ -65,7 +65,7 @@ The system achieves **78.10% accuracy**.
 | Still    | 42      | 1.0000      | 0.6915      | 0.5972   |
 
 ### Key Findings
-- **Still**,**Jumping ** and **Still**: Perfect recognition (100% all metrics)
+- **Walking**,**Jumping ** and **Still**: Perfect recognition (100% sensiticity)
 - **Standing**: Failed to recognize (0% sensitivity)
 
 ##  Project Structure
@@ -77,24 +77,16 @@ project/
 ├── requirements.txt                  # Python dependencies
 ├── README.md                        # This file
 │
-├── data-recordings/                 
-│   ├── standing/
-│   │   ├── 1/ (Accelerometer.csv, Gyroscope.csv)
-│   │   ├── 2/
-│   │   └── 3/
-│   ├── walking/
-│   ├── jumping/
-│   └── still/
-│
-└── outputs/                         
-    ├── raw_sensor_signals.png
-    ├── feature_distributions.png
-    ├── transition_matrix.png
-    ├── confusion_matrix.png
-    ├── decoded_sequences.png
-    ├── evaluation_metrics.csv
-    ├── model_summary.csv
-    └── hmm_model.pkl (trained model)
+├── HMM data/                 
+    ├── standing/
+    │   ├── standing1/ (Accelerometer.csv, Gyroscope.csv)
+    │   ├── standing2/
+    │   └── standing3/
+    ├── walking/
+    ├── jumping/
+    └── still/
+
+
 ```
 
 ### Installation
@@ -117,7 +109,7 @@ jupyter notebook
 ### Using Google Colab (Alternative)
 
 1. Upload `Hidden_Markov_Models.ipynb` to Google Colab
-2. Upload `data-recordings.zip`
+2. Upload `HMM data`
 3. Update `DATA_DIR` path in notebook
 4. Run all cells
 
@@ -134,8 +126,7 @@ The notebook generates several visualizations:
 ##  Analysis & Insights
 
 ### What Worked Well
-- High-amplitude, periodic activities (jumping) are easily recognizable
-- No-movement states (still) are perfectly distinguishable
+- Jumping and Walking are easiest to recognize due to high motion and unique frequency patterns.
 - Temporal modeling via HMM captures realistic activity transitions
 - Feature engineering effectively captures motion characteristics
 
@@ -177,7 +168,6 @@ This project demonstrates:
 - Roxanne Niteka
 - Laurelle Jinelle Nformi
 
-**Note**: The trained model and all outputs are included in the `outputs/` directory. 
 The complete analysis and discussion are available in the written report.
 
 [REPORT](https://docs.google.com/document/d/1iyaIqTNclKEeh6WHNkLxXYHCtj7UjjHSAfHbsNJGFuw/edit?tab=t.0)
